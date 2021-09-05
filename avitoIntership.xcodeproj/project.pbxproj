@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		875EAB9B26E556F1002F1656 /* BasicLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875EAB9A26E556F1002F1656 /* BasicLabel.swift */; };
 		877D1AC126DF687500DDA063 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877D1AC026DF687500DDA063 /* AppDelegate.swift */; };
 		877D1AC326DF687500DDA063 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877D1AC226DF687500DDA063 /* SceneDelegate.swift */; };
 		877D1AC526DF687500DDA063 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877D1AC426DF687500DDA063 /* ViewController.swift */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		277CC44900E676190286AA1B /* Pods_avitoIntership.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_avitoIntership.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		875EAB9A26E556F1002F1656 /* BasicLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicLabel.swift; sourceTree = "<group>"; };
 		877D1ABD26DF687500DDA063 /* avitoIntership.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = avitoIntership.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		877D1AC026DF687500DDA063 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		877D1AC226DF687500DDA063 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 				877D1ACE26DF687900DDA063 /* Info.plist */,
 				877D1AD426DFA8D700DDA063 /* CellTableView.swift */,
 				877D1AD626E0B31900DDA063 /* Model.swift */,
+				875EAB9A26E556F1002F1656 /* BasicLabel.swift */,
 			);
 			path = avitoIntership;
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				877D1AD726E0B31900DDA063 /* Model.swift in Sources */,
+				875EAB9B26E556F1002F1656 /* BasicLabel.swift in Sources */,
 				877D1AC526DF687500DDA063 /* ViewController.swift in Sources */,
 				877D1AC126DF687500DDA063 /* AppDelegate.swift in Sources */,
 				877D1AD526DFA8D700DDA063 /* CellTableView.swift in Sources */,

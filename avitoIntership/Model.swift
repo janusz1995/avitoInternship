@@ -7,9 +7,6 @@
 
 import Foundation
 
-
-//let empty = try? newJSONDecoder().decode(Empty.self, from: jsonData)
-
 // MARK: - Model
 struct model: Codable {
     let company: Company

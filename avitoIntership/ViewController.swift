@@ -8,44 +8,28 @@
 import UIKit
 import SnapKit
 
-private var countCells = 4
-let heightCell = 60
-//private var heightTV = countCells * heightCell
+//private var countCells = 4
 let sideConstraint = 10
 let host = "https://run.mocky.io/v3/1d1cb4ec-73db-4762-8c4b-0b8aa3cecd4c"
 let session = URLSession.shared
-let tintText: CGFloat = 24
 
+enum Fonts: CGFloat {
+    case title = 24
+    case basic = 17
+}
+
+let m = model(company: Company(name: "avito", employees: [Employee(name: "Jack", phoneNumber: "12345", skills: ["Kotlin", "Android", "Java"]), Employee(name: "Rasel", phoneNumber: "678910", skills: ["iOS", "Swift"])]))
 
 class ViewController: UIViewController {
 
     private var companyModel: model? = nil
-    
-    private let nameLabel: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: tintText)
-        label.text = "Name"
-        return label
-    }()
+    private var countCells = m.company.employees.count
 
-    private let phoneLabel: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: tintText)
-        label.text = "Phone"
-        return label
-    }()
-
-    private let skillsLabel: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: tintText)
-        label.text = "Skills"
-        return label
-    }()
-
-    private let infoView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
+    private let infoStackView: UIStackView = {
+        let sv = UIStackView()
+        sv.axis = .horizontal
+        sv.distribution = .fillEqually
+        return sv
     }()
 
     private let tableView: UITableView = {
@@ -60,58 +44,37 @@ class ViewController: UIViewController {
 //        getCall()
         setupView()
         setupTableView()
-        setupInfoView()
-        setupNameLabel()
-        setupPhoneLabel()
-        setupSkillsLabel()
+        setupInfoStackView()
     }
 
     private func setupView() {
         view.addSubview(tableView)
-        view.addSubview(infoView)
+        view.addSubview(infoStackView)
     }
 
-    private func setupInfoView() {
-        infoView.snp.makeConstraints { (make) -> Void in
+    private func setupInfoStackView() {
+        let nameLabel = BasicLabel("Name", Fonts.title.rawValue)
+        let phoneLabel = BasicLabel("Phone", Fonts.title.rawValue)
+        let skillsLabel = BasicLabel("Skills", Fonts.title.rawValue)
+
+        infoStackView.addArrangedSubview(nameLabel)
+        infoStackView.addArrangedSubview(phoneLabel)
+        infoStackView.addArrangedSubview(skillsLabel)
+        
+        infoStackView.snp.makeConstraints{ (make) -> Void in
             make.top.equalTo(view.safeAreaLayoutGuide)
             make.left.equalTo(view.safeAreaLayoutGuide).offset(sideConstraint)
             make.right.equalTo(view.safeAreaLayoutGuide).offset(-sideConstraint)
             make.height.equalTo(50)
         }
-//        infoView.backgroundColor = #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1)
-        infoView.layer.cornerRadius = 8
+    }
 
-        infoView.addSubview(nameLabel)
-        infoView.addSubview(phoneLabel)
-        infoView.addSubview(skillsLabel)
-    }
-    
-    private func setupNameLabel() {
-        nameLabel.snp.makeConstraints { (make) -> Void in
-            make.left.equalTo(infoView).offset(15)
-            make.centerY.equalTo(infoView)
-        }
-    }
-    
-    private func setupPhoneLabel() {
-        phoneLabel.snp.makeConstraints { (make) -> Void in
-            make.centerY.centerX.equalTo(infoView)
-        }
-    }
-    
-    private func setupSkillsLabel() {
-        skillsLabel.snp.makeConstraints { (make) -> Void in
-            make.right.equalTo(infoView).offset(-15)
-            make.centerY.equalTo(infoView)
-        }
-    }
-    
     private func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(CellTableView.self, forCellReuseIdentifier: "CellTableView")
         tableView.isScrollEnabled = false
-        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+//        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         tableView.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
 
         tableView.snp.makeConstraints { (make) -> Void in
@@ -119,12 +82,9 @@ class ViewController: UIViewController {
             make.right.equalTo(view).offset(-sideConstraint)
             make.top.equalTo(view).offset(100)
             make.bottom.equalTo(view).offset(-10)
-//            make.height.equalTo(heightCell * countCells)
-//            make.right.equalTo(view.rightAnchor)
         }
     }
-    
-    
+
 
     private func getCall() {
         
@@ -155,8 +115,8 @@ class ViewController: UIViewController {
                     print("Can`t get company model")
                     return
                 }
-                countCells = cm.company.employees.count
-                print(countCells)
+                self.countCells = cm.company.employees.count
+                print(self.countCells)
                 print(json)
 //                heightTV = countCells * heightCell
                 
@@ -188,13 +148,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CGFloat(heightCell)
-    }
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return countCells
-//        return companyModel == nil ? 0 : companyModel!.company.employees.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -202,7 +157,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         else {
             fatalError("Don't create CellTableView cell")
         }
-        cell.setupCell(name: "Jack")
+        let empoyer = m.company.employees[indexPath.row]
+        cell.setupCell(name: empoyer.name, phone: empoyer.phoneNumber, skills: empoyer.skills)
 //        cell.setupCell(labelForCell: sideMenuButtonArray[indexPath.row].label, pathForImage: sideMenuButtonArray[indexPath.row].iconName)
 //        cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
 //        cell.selectionStyle = .none
