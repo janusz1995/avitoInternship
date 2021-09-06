@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  avitoIntership
-//
-//  Created by Janusz on 9/1/21.
-//
-
 import UIKit
 
 @main

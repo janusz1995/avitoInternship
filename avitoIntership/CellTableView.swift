@@ -1,10 +1,3 @@
-//
-//  CellTableView.swift
-//  avitoIntership
-//
-//  Created by Janusz on 9/1/21.
-//
-
 import UIKit
 import SnapKit
 
@@ -30,12 +23,10 @@ class CellTableView: UITableViewCell {
 
     func setupCell(name: String, phone: String, skills: [String]) {
         self.contentView.addSubview(stackView)
-        self.contentView.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
-
         let nameLabel = BasicLabel(name, Fonts.basic.rawValue)
         let phoneLabel = BasicLabel(phone, Fonts.basic.rawValue)
-
         setupStackView(nameLabel, phoneLabel)
+
         for skill in skills {
             skillsStackView.addArrangedSubview(BasicLabel(skill, Fonts.basic.rawValue))
         }
@@ -48,7 +39,6 @@ class CellTableView: UITableViewCell {
         stackView.snp.makeConstraints { (make) -> Void in
             make.left.right.bottom.top.equalTo(self.contentView)
         }
-        
     }
 
     required init?(coder: NSCoder) {

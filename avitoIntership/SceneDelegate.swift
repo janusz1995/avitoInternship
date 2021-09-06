@@ -1,10 +1,3 @@
-//
-//  SceneDelegate.swift
-//  avitoIntership
-//
-//  Created by Janusz on 9/1/21.
-//
-
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {

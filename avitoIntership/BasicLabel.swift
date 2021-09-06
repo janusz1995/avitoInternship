@@ -1,10 +1,3 @@
-//
-//  BasicLabel.swift
-//  avitoIntership
-//
-//  Created by Janusz on 9/5/21.
-//
-
 import UIKit
 
 final class BasicLabel: UILabel {

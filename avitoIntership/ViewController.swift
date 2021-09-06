@@ -1,29 +1,18 @@
-//
-//  ViewController.swift
-//  avitoIntership
-//
-//  Created by Janusz on 9/1/21.
-//
-
 import UIKit
 import SnapKit
-
-//private var countCells = 4
-let sideConstraint = 10
-let host = "https://run.mocky.io/v3/1d1cb4ec-73db-4762-8c4b-0b8aa3cecd4c"
-let session = URLSession.shared
 
 enum Fonts: CGFloat {
     case title = 24
     case basic = 17
 }
 
-let m = model(company: Company(name: "avito", employees: [Employee(name: "Jack", phoneNumber: "12345", skills: ["Kotlin", "Android", "Java"]), Employee(name: "Rasel", phoneNumber: "678910", skills: ["iOS", "Swift"])]))
-
 class ViewController: UIViewController {
 
+    private let host = "https://run.mocky.io/v3/1d1cb4ec-73db-4762-8c4b-0b8aa3cecd4c"
+    private let session = URLSession.shared
     private var companyModel: model? = nil
-    private var countCells = m.company.employees.count
+    private var countCells = 0
+    private var heightOfTableView: CGFloat = 0.0
 
     private let infoStackView: UIStackView = {
         let sv = UIStackView()
@@ -35,13 +24,12 @@ class ViewController: UIViewController {
     private let tableView: UITableView = {
         let tv = UITableView()
         tv.translatesAutoresizingMaskIntoConstraints = false
-        tv.layer.cornerRadius = 10.0
         return tv
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        getCall()
+        getCall()
         setupView()
         setupTableView()
         setupInfoStackView()
@@ -63,8 +51,7 @@ class ViewController: UIViewController {
         
         infoStackView.snp.makeConstraints{ (make) -> Void in
             make.top.equalTo(view.safeAreaLayoutGuide)
-            make.left.equalTo(view.safeAreaLayoutGuide).offset(sideConstraint)
-            make.right.equalTo(view.safeAreaLayoutGuide).offset(-sideConstraint)
+            make.left.right.equalTo(view.safeAreaLayoutGuide)
             make.height.equalTo(50)
         }
     }
@@ -74,36 +61,38 @@ class ViewController: UIViewController {
         tableView.delegate = self
         tableView.register(CellTableView.self, forCellReuseIdentifier: "CellTableView")
         tableView.isScrollEnabled = false
-//        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
-        tableView.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        tableView.backgroundColor = .clear
 
         tableView.snp.makeConstraints { (make) -> Void in
-            make.left.equalTo(view).offset(sideConstraint)
-            make.right.equalTo(view).offset(-sideConstraint)
-            make.top.equalTo(view).offset(100)
-            make.bottom.equalTo(view).offset(-10)
+            make.topMargin.equalTo(infoStackView.snp_bottomMargin).offset(10)
+            make.bottom.left.right.equalTo(view.safeAreaLayoutGuide)
         }
     }
 
+    private func updateTableView() {
+        if let countEmployers = companyModel?.company.employees.count {
+            countCells = countEmployers
+        }
+        tableView.reloadData()
+    }
 
     private func getCall() {
-        
+
         guard let url = URL(string: host) else {
             print("Failed url :(")
             return
         }
-        
+
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
-        
         session.dataTask(with: request) { data, response, error in
-            
             guard error == nil else {
                 print("error calling GET")
                 print(error!)
                 return
             }
-            
+
             guard let responseData = data else {
                 print("Error data :(")
                 return
@@ -111,37 +100,21 @@ class ViewController: UIViewController {
             do {
                 let json = try JSONDecoder().decode(model.self, from: responseData)
                 self.companyModel = json
+
                 guard let cm = self.companyModel else {
                     print("Can`t get company model")
                     return
                 }
-                self.countCells = cm.company.employees.count
-                print(self.countCells)
-                print(json)
-//                heightTV = countCells * heightCell
-                
-//                DispatchQueue.main.async {
-//                    self.tableView.reloadData()
-//                    print(countCells)
-//                }
-//                countCells = json.company.employees.count
+
+                DispatchQueue.main.async {
+                    self.updateTableView()
+                }
             } catch {
                 print("Error json :(")
             }
-            
-//            do {
-//                let json = try JSONSerialization.jsonObject(with: responseData, options: [])
-//                print("The Response is : ",json)
-//            } catch {
-//                print("JSON error: \(error.localizedDescription)")
-//            }
-//            print(responseData)
         }.resume()
     }
 }
-
-
-
 
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -157,12 +130,12 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         else {
             fatalError("Don't create CellTableView cell")
         }
-        let empoyer = m.company.employees[indexPath.row]
-        cell.setupCell(name: empoyer.name, phone: empoyer.phoneNumber, skills: empoyer.skills)
-//        cell.setupCell(labelForCell: sideMenuButtonArray[indexPath.row].label, pathForImage: sideMenuButtonArray[indexPath.row].iconName)
-//        cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-//        cell.selectionStyle = .none
+        if let employer = companyModel?.company.employees[indexPath.row] {
+            cell.setupCell(name: employer.name, phone: employer.phoneNumber, skills: employer.skills)
+            if (indexPath.row % 2) == 0 {
+                cell.backgroundColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
+            }
+        }
         return cell
     }
 }
-

@@ -1,10 +1,3 @@
-//
-//  Model.swift
-//  avitoIntership
-//
-//  Created by Janusz on 9/2/21.
-//
-
 import Foundation
 
 // MARK: - Model
