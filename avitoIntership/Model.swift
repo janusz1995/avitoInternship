@@ -2,13 +2,13 @@ import Foundation
 
 // MARK: - Model
 struct model: Codable {
-    let company: Company
+    var company: Company
 }
 
 // MARK: - Company
 struct Company: Codable {
     let name: String
-    let employees: [Employee]
+    var employees: [Employee]
 }
 
 // MARK: - Employee

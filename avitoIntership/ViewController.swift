@@ -73,8 +73,9 @@ class ViewController: UIViewController {
     private func updateTableView() {
         if let countEmployers = companyModel?.company.employees.count {
             countCells = countEmployers
+            companyModel?.company.employees.sort { $0.name < $1.name }
+            tableView.reloadData()
         }
-        tableView.reloadData()
     }
 
     private func getCall() {
