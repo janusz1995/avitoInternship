@@ -22,7 +22,7 @@
 /* Begin PBXFileReference section */
 		277CC44900E676190286AA1B /* Pods_avitoIntership.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_avitoIntership.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		875EAB9A26E556F1002F1656 /* BasicLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicLabel.swift; sourceTree = "<group>"; };
-		877D1ABD26DF687500DDA063 /* avitoIntership.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = avitoIntership.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		877D1ABD26DF687500DDA063 /* avitoInternship.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = avitoInternship.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		877D1AC026DF687500DDA063 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		877D1AC226DF687500DDA063 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		877D1AC426DF687500DDA063 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -70,7 +70,7 @@
 		877D1ABE26DF687500DDA063 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				877D1ABD26DF687500DDA063 /* avitoIntership.app */,
+				877D1ABD26DF687500DDA063 /* avitoInternship.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -103,9 +103,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		877D1ABC26DF687500DDA063 /* avitoIntership */ = {
+		877D1ABC26DF687500DDA063 /* avitoInternship */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 877D1AD126DF687900DDA063 /* Build configuration list for PBXNativeTarget "avitoIntership" */;
+			buildConfigurationList = 877D1AD126DF687900DDA063 /* Build configuration list for PBXNativeTarget "avitoInternship" */;
 			buildPhases = (
 				DE90C5D813F23BCBB3BE4DD8 /* [CP] Check Pods Manifest.lock */,
 				877D1AB926DF687500DDA063 /* Sources */,
@@ -117,9 +117,9 @@
 			);
 			dependencies = (
 			);
-			name = avitoIntership;
+			name = avitoInternship;
 			productName = avitoIntership;
-			productReference = 877D1ABD26DF687500DDA063 /* avitoIntership.app */;
+			productReference = 877D1ABD26DF687500DDA063 /* avitoInternship.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -136,7 +136,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 877D1AB826DF687500DDA063 /* Build configuration list for PBXProject "avitoIntership" */;
+			buildConfigurationList = 877D1AB826DF687500DDA063 /* Build configuration list for PBXProject "avitoInternship" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -149,7 +149,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				877D1ABC26DF687500DDA063 /* avitoIntership */,
+				877D1ABC26DF687500DDA063 /* avitoInternship */,
 			);
 		};
 /* End PBXProject section */
@@ -296,7 +296,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -351,7 +351,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -374,7 +374,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "Ivan-Skvortsov.avitoIntership";
+				PRODUCT_BUNDLE_IDENTIFIER = "Ivan-Skvortsov.avitoInternship";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -394,7 +394,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "Ivan-Skvortsov.avitoIntership";
+				PRODUCT_BUNDLE_IDENTIFIER = "Ivan-Skvortsov.avitoInternship";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -404,7 +404,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		877D1AB826DF687500DDA063 /* Build configuration list for PBXProject "avitoIntership" */ = {
+		877D1AB826DF687500DDA063 /* Build configuration list for PBXProject "avitoInternship" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				877D1ACF26DF687900DDA063 /* Debug */,
@@ -413,7 +413,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		877D1AD126DF687900DDA063 /* Build configuration list for PBXNativeTarget "avitoIntership" */ = {
+		877D1AD126DF687900DDA063 /* Build configuration list for PBXNativeTarget "avitoInternship" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				877D1AD226DF687900DDA063 /* Debug */,
